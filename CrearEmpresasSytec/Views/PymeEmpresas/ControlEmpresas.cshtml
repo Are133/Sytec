@@ -1,0 +1,628 @@
+﻿@model CrearEmpresasSytec.Models.Empresa
+@{
+    ViewData["Title"] = "Agregar Empresa";
+}
+
+<h6 class="">Nueva Empresa</h6>
+<hr style="background-color:black" />
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos Fiscales</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Certificado Digital</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Correo Electronico</a>
+    </li>
+
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="sisu-tab" data-toggle="tab" href="#sisu" role="tab" aria-controls="sisu" aria-selected="false">Proveedor Autorizado de Certificacion (PAC)</a>
+    </li>
+</ul>
+
+<form asp-action="AgregarEmpresa" enctype="multipart/form-data" id="formulario" method="post">
+    <hr style="background-color:black" />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <input type="submit" value="Guardar" class="btn btn-outline-primary" />
+                <a asp-action="GuardarYNuevo" class="btn btn-outline-success">Guardar y Nuevo</a>
+                <a asp-action="GuardarYCerrar" class="btn btn-outline-warning">Guardar y Cerrar</a>
+                <a asp-action="Cerrar" class="btn btn-outline-danger">Cerrar</a>
+            </div>
+        </div>
+    </div>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Configuracion.IdConfigFacturacion" />
+    <input type="hidden" asp-for="Configuracion.IdEmpresa" />
+    <input type="hidden" asp-for="IdEmpresa" />
+
+    <hr style="background-color:black" />
+
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="NombreEmpresa" class="control-label"></label>
+                        <input id="nombreEmpresa" asp-for="NombreEmpresa" class="form-control" />
+                        <span asp-validation-for="NombreEmpresa" id="span-nombreEmpresa" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="NombreComercil" class="control-label">Nombre Comercial</label>
+                        <input id="nombreComercil" asp-for="NombreComercil" class="form-control" />
+                        <span asp-validation-for="NombreComercil" id="span-nombreComercial" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Sucursal" class="control-label"></label>
+                        <input name="Sucursal" id="sucursal" class="form-control" />
+                        <span asp-validation-for="Sucursal" id="span-sucursal" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="CURP" class="control-label"></label>
+                        <input name="CURP" id="curp" asp-for="CURP" class="form-control" />
+                        <span asp-validation-for="CURP" id="span-curp" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Calle" class="control-label"></label>
+                        <input name="Calle" id="calle" asp-for="Calle" class="form-control" />
+                        <span asp-validation-for="Calle" id="span-calle" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Colonia" class="control-label"></label>
+                        <input name="Colonia" id="colonia" asp-for="Colonia" class="form-control" />
+                        <span asp-validation-for="Colonia" id="span-colonia" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="CP" class="control-label">Codigo Postal</label>
+                        <input name="CP" id="cp" asp-for="CP" class="form-control" />
+                        <span asp-validation-for="CP" id="span-cp" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="TEL" class="control-label">Telefono</label>
+                        <input name="TEL" id="tel" asp-for="TEL" class="form-control" />
+                        <span asp-validation-for="TEL" id="span-tel" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="IdPaises" class="control-label">Pais</label>
+                        <select name="IdPaises" id="idpaises" class="form-control">
+                            <option selected>Seleccione un dato</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="IdPaises" id="span-idpaises" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="IdEstados" id=idestados class="control-label">Estado</label>
+                        <select name="IdEstados" class="form-control">
+                            <option selected>Seleccione un dato</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="IdEstados" id="id-estados" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Municipio" class="control-label"></label>
+                        <input name="Municipio" id="municipio" asp-for="Municipio" class="form-control" />
+                        <span asp-validation-for="Municipio" id="span-municipio" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="RFC" class="control-label"></label>
+                        <input name="RFC" asp-for="RFC" id="rfc" class="form-control" />
+                        <span asp-validation-for="RFC" id="span-rfc" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-check-inline">
+                <label class="form-check-label">
+
+                    <input type="radio" name="EsEntidadPublica" value="S" @(Model.EsEntidadPublica == "S" ? "checked" : "") />Publica |
+                    <input type="radio" name="EsEntidadprivada" value="N" @(Model.EsEntidadprivada == "S" ? "checked" : "") />Privada
+
+                </label>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.NombreCertificado" class="control-label"></label>
+                        <input name="Configuracion.NombreCertificado" asp-for="Configuracion.NombreCertificado" class="form-control" />
+                        <span asp-validation-for="Configuracion.Certificado" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.Certificado" class="control-label"></label>
+                        <div class="custom-file">
+                            <input name="Configuracion.Certificado" asp-for="Configuracion.Certificado" class="custom-file-input" type="file" id="customFile1">
+                            <label class="custom-file-label" for="customFile">Seleccione archivo..</label>
+                            <span asp-validation-for="Configuracion.Certificado" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.NombreLlavePublica" class="control-label">Llave publica</label>
+                        <input name="Configuracion.NombreLlavePublica" asp-for="Configuracion.NombreLlavePublica" class="form-control" placeholder="Nombre de la llave publica" />
+                        <span asp-validation-for="Configuracion.NombreLlavePublica" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.LlavePublica" class="control-label"></label>
+                        <div class="custom-file">
+                            <input name="Configuracion.LlavePublica" asp-for="Configuracion.LlavePublica" type="file" class="custom-file-input" id="customFile2">
+                            <label class="custom-file-label" for="customFile">Seleccione archivo..</label>
+                            <span asp-validation-for="Configuracion.LlavePublica" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.LlavePrivada" class="control-label"></label>
+                        <input name="Configuracion.LlavePrivada" asp-for="Configuracion.LlavePrivada" class="form-control" />
+                        <span asp-validation-for="Configuracion.LlavePrivada" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.APIKey" class="control-label"></label>
+                        <input name="Configuracion.APIKey" asp-for="Configuracion.APIKey" class="form-control" />
+                        <span asp-validation-for="Configuracion.APIKey" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.LlavePrivada" class="control-label"></label>
+                        <select name="Configuracion.LlavePrivada" class="form-control">
+                            <option>Seleccione un ambiente</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                        <span asp-validation-for="Configuracion.LlavePrivada" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.OpcionTimbrado" class="control-label"></label>
+                        <input name="Configuracion.OpcionTimbrado" asp-for="Configuracion.OpcionTimbrado" class="form-control" />
+                        <span asp-validation-for="Configuracion.OpcionTimbrado" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="custom-control custom-switch">
+                <input name="EsAmbieteDePrueba" asp-for="EsAmbieteDePrueba" type="checkbox" class="custom-control-input" id="switch1">
+                <label class="custom-control-label" for="switch1">Ambiente de prueba</label>
+            </div>
+        </div>
+
+
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+            <div class="card-columns">
+                <div class="card bg-primary">
+                    <div class="card-body text-center">
+                        <div class="card-body text-center" style="">
+                            <div class="card" style="width:250px">
+                                <img class="card-img-top" style="width:50%;height:50%" src="~/images/loginaspnet.png" alt="Card image">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label">Correo</label>
+                                        <input name="Email" asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Contraseña" class="control-label">Contraseña</label>
+                                        <input name="Contraseña" type="password" asp-for="Contraseña" class="form-control" />
+                                        <span asp-validation-for="Contraseña" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-warning">
+                    <div class="card-body text-center">
+                        <div class="card-body text-center" style="">
+                            <div class="card" style="width:250px">
+                                @*<img class="card-img-top" style="width:50%;height:50%" src="~/images/loginaspnet.png" alt="Card image">*@
+                                <h4>PYME</h4>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label asp-for="Mensaje"></label>
+                                            <textarea name="Mensaje" asp-for="Mensaje" class="form-control"></textarea>
+                                            <span asp-validation-for="Mensaje" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Asunto">Asunto</label>
+                                        <textarea name="Asunto" asp-for="Asunto" class="form-control"></textarea>
+                                        <span asp-validation-for="Asunto" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Configuracion.AmbienteTimbrado">Ambiente de Timbrado</label>
+                                        <select name="Configuracion.AmbienteTimbrado" asp-for="Configuracion.AmbienteTimbrado" class="form-control">
+                                            <option selected>Seleccione una opcion...</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                        <span asp-validation-for="Configuracion.AmbienteTimbrado" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-success">
+                    <div class="card-body text-center" style="">
+                        <div class="card" style="width:250px">
+                            @*<img class="card-img-top" style="width:50%;height:50%" src="~/images/loginaspnet.png" alt="Card image">*@
+                            <h4>PYME</h4>
+                            <h5> .</h5>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label asp-for="Configuracion.OpcionEnviarFactura">Envio de factura</label>
+                                    <input name="Configuracion.OpcionEnviarFactura" asp-for="Configuracion.OpcionEnviarFactura" class="form-control">
+                                    <span asp-validation-for="Configuracion.OpcionEnviarFactura" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Configuracion.OpcionTimbrado">Opcion de Timbrado</label>
+                                    <input name="Configuracion.OpcionTimbrado" asp-for="Configuracion.OpcionTimbrado" class="form-control" />
+                                    <span asp-validation-for="Configuracion.OpcionTimbrado" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Configuracion.VersionCFDI">CFDI</label>
+                                    <select name="Configuracion.VersionCFDI" asp-for="Configuracion.VersionCFDI" class="form-control">
+                                        <option selected>Seleccione una opcion...</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                    <span asp-validation-for="Configuracion.VersionCFDI" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="sisu" class="tab-pane fade">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.UserPac" class="control-label">User PAC</label>
+                        <input name="Configuracion.UserPac" asp-for="Configuracion.UserPac" class="form-control" />
+                        <span asp-validation-for="Configuracion.UserPac" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.PassPac" class="control-label">Pass PAC</label>
+                        <input name="Configuracion.PassPac" asp-for="Configuracion.PassPac" class="form-control" />
+                        <span asp-validation-for="Configuracion.PassPac" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.NcMetodoPago" class="control-label">Metodo de pago</label>
+                        <input name="Configuracion.NcMetodoPago" asp-for="Configuracion.NcMetodoPago" class="form-control" />
+                        <span asp-validation-for="Configuracion.NcMetodoPago" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="SeguridadClienteId" class="control-label">Cliente seguridad</label>
+                        <select name="SeguridadClienteId" class="form-control">
+                            <option selected>Seleciona una opcion..</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="SeguridadClienteId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="IdSATRegimenFiscal" class="control-label">Regimen Fiscal SAT</label>
+                        <select name="IdSATRegimenFiscal" asp-for="IdSATRegimenFiscal" class="form-control">
+                            <option selected>Seleccione una opcion...</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                        <span asp-validation-for="IdSATRegimenFiscal" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.PAC" class="control-label"></label>
+                        <select name="Configuracion.PAC" asp-for="Configuracion.PAC" class="form-control">
+                            <option selected>Seleccione una opcion...</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="HabilitarCifrado" class="control-label"></label>
+                        <input name="HabilitarCifrado" asp-for="HabilitarCifrado" class="form-control" />
+                        <span asp-validation-for="HabilitarCifrado" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Servidor1" class="control-label">Servidor 1</label>
+                        <input name="Servidor1" asp-for="Servidor1" class="form-control" />
+                        <span asp-validation-for="Servidor1" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Servidro2" class="control-label">Servidor 2</label>
+                        <input name="Servidro2" asp-for="Servidro2" class="form-control" />
+                        <span asp-validation-for="Servidro2" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Puerto1" class="control-label">Puerto 1</label>
+                        <input name="Puerto1" asp-for="Puerto1" class="form-control" />
+                        <span asp-validation-for="Puerto1" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Puerto2" class="control-label">Puerto 2</label>
+                        <input name="Puerto2" asp-for="Puerto2" class="form-control" />
+                        <span asp-validation-for="Puerto2" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="RegistroPatronal" class="control-label">Registro Patronal</label>
+                        <input name="RegistroPatronal" asp-for="RegistroPatronal" class="form-control" />
+                        <span asp-validation-for="RegistroPatronal" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.UserPac" class="control-label">User PAC</label>
+                        <input name="Configuracion.UserPac" asp-for="Configuracion.UserPac" class="form-control" />
+                        <span asp-validation-for="Configuracion.UserPac" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Configuracion.PassPac" class="control-label">Pass PAC</label>
+                        <input name="Configuracion.PassPac" asp-for="Configuracion.PassPac" class="form-control" />
+                        <span asp-validation-for="Configuracion.PassPac" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input name="SNCF" asp-for="SNCF" type="checkbox" class="custom-control-input" id="switch3">
+                            <label asp-for="SNCF" class="custom-control-label" for="switch3">SNFC</label>
+                            <span asp-validation-for="SNCF" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input name="DeSistema" asp-for="DeSistema" type="checkbox" class="custom-control-input" id="switch4">
+                            <label asp-for="DeSistema" class="custom-control-label" for="switch4">De sistema</label>
+                            <span asp-validation-for="DeSistema" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script>
+        $(document).ready(function () {
+            $('#myTab a').on('click', function (event) {
+                event.preventDefault()
+                $(this).tab('show')
+            })
+
+            $("[name=EsEntidadPublica]").change(function () {
+                if ($("[name=EsEntidadPublica]").is(":checked")) {
+                    $("[name=EsEntidadprivada]").prop("checked", false);
+                    $("[name=EsEntidadprivada]").val("N");
+                    $("[name=EsEntidadPublica]").val("S");
+                }
+            });
+
+            $("[name=EsEntidadprivada]").change(function () {
+                if ($("[name=EsEntidadprivada]").is(":checked")) {
+                    $("[name=EsEntidadPublica]").prop("checked", false);
+                    $("[name=EsEntidadPublica]").val("N");
+                    $("[name=EsEntidadprivada]").val("S");
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("formulario").addEventListener('submit', validar)
+        })
+
+        function validar(evento) {
+            evento.preventDefault()
+            let nombreEmpresa = document.getElementById('nombreEmpresa').value
+            let nombreComercial = document.getElementById('nombreComercil').value
+            let sucursal = document.getElementById('sucursal').value
+            let curp = document.getElementById('curp').value
+            let calle = document.getElementById('calle').value
+            let colonia = document.getElementById('colonia').value
+            let cp = document.getElementById('cp').value
+            let tel = document.getElementById('tel').value
+            
+            
+
+            if (nombreEmpresa === "") {
+                document.getElementById("span-nombreEmpresa").textContent = "Debes dar un nombre de empresa."
+                return
+
+            }
+            document.getElementById("span-nombreEmpresa").textContent = ""
+
+            if (nombreComercial === "") {
+                document.getElementById("span-nombreComercial").textContent = "Debes dar un nombre comercial"
+                return
+            }
+            document.getElementById("span-nombreComercial").textContent = ""
+
+            if (sucursal === "") {
+                document.getElementById("span-sucursal").textContent = "Ingresa el nombre de la sucursal"
+                return
+            }
+            document.getElementById("span-sucursal").textContent = ""
+
+            if (curp === "") {
+                document.getElementById("span-curp").textContent = "Debes ingresar una CURP"
+                return
+            }
+            document.getElementById("span-curp").textContent = ""
+
+            if (calle === "") {
+                document.getElementById("span-calle").textContent = "Debes ingresar la calle para la direccion"
+                return
+            }
+            document.getElementById("span-calle").textContent = ""
+
+            if (colonia === "") {
+                document.getElementById("span-colonia").textContent = "Debes ingresar el nombre de la colonia para la direccion"
+                return
+            }
+            document.getElementById("span-colonia").textContent = ""
+
+            if (cp === "") {
+                document.getElementById("span-cp").textContent = "Debes ingresar tu codigo postal"
+                return
+            }
+            document.getElementById("span-cp").textContent = ""
+
+            if (tel == "") {
+                document.getElementById("span-tel").textContent = "Debes ingresar un numero telefonico"
+                return
+            }
+            document.getElementById("span-tel").textContent = ""
+
+
+
+
+           
+
+
+            this.submit()
+        }
+    </script>
+
+}
+

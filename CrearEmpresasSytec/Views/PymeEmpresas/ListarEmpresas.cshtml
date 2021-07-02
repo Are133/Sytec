@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CrearEmpresasSytec.Models.Empresa>
+@{
+    ViewData["Title"] = "ListarEmpresas";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width-device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <title>Empresas Registradas</title>
+    <link rel="stylesheet" href="~/css/cardStyles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    @foreach (var item in Model)
+    {
+        <section>
+            <!--Tarjeta 1-->
+            <div class="cuerpo-tarjeta">
+                <div class="foto">
+                    <img src="~/images/crad-images/nophoto.png" alt="Alternate Text" />
+
+                </div>
+              
+
+                <div class="descripcion">
+                    @Html.DisplayNameFor(model => model.NombreEmpresa)
+                    @Html.DisplayFor(modelItem => item.NombreEmpresa)
+                </div>
+
+                <div class="descripcion">
+                    @Html.DisplayNameFor(model => model.NombreComercil):
+                    @Html.DisplayFor(modelItem => item.NombreComercil)
+                </div>
+
+                <div class="descripcion">
+                    @Html.DisplayNameFor(model => model.Colonia):
+                    @Html.DisplayFor(modelItem => item.Colonia)
+                </div>
+
+                <div class="descripcion">
+                    @Html.DisplayNameFor(model => model.Municipio):
+                    @Html.DisplayFor(modelItem => item.Municipio)
+                </div>
+
+
+                <div class="align-button">
+                    <a class="btn btn-outline-primary btn-sm">Detalles</a>
+                    <a class="btn btn-outline-warning btn-sm">Editar</a>
+                    <a class="btn btn-outline-danger btn-sm">Borrar</a>
+                </div>
+                <br />
+            </div>
+
+
+        </section>
+    }
+
+
+
+    
+
+
+
+</body>
+</html>
+
